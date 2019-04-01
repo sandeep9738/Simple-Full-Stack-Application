@@ -2,7 +2,8 @@
 
 A Simple Node.js app using Express 4
 
-Frontend - HTML, CSS, JS
+Frontend - HTML, CSS, JS.
+
 Backend - Nodejs, Express
 
 ## Running Locally
@@ -18,6 +19,7 @@ Your app should now be running on [localhost:8000](http://localhost:8000/).
 
 1. Admin Credentials -->
     username : admin
+    
     password : qleveradmin
 
 2. After Verfication of user, verify button will not be displayed
