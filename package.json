@@ -1,0 +1,19 @@
+{
+    "name": "simpleapp",
+    "version": "1.0.0",
+    "description": "nodejs app",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "dependencies": {
+        "body-parser": "latest",
+        "express": "latest",
+        "jwt-simple": "^0.5.5",
+        "moment": "^2.24.0",
+        "mongoose": "latest"
+    },
+    "devDependencies": {
+        "nodemon": "latest"
+    }
+}

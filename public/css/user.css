@@ -1,0 +1,65 @@
+.topbar {
+    height: 89px;
+    width: 100%;
+    border: 1px Solid #e1d7ea;
+    border-radius: 12px;
+}
+.topbar h2 {
+    padding: 0px;
+    width: 25%;
+    margin-left: 40%;
+    text-align: center;
+    color: darkcyan;
+    height: 55px;
+}
+
+.logoutbtn {
+    float: right;
+    border-radius: 10px;
+    width: 120px;
+    height: 40px;
+    background-color: azure;
+    margin: -50px 20px 10px 10px;
+}
+
+.userinfo {
+    height: 50%;
+    width: 50%;
+}
+
+.userinfo h2 {
+    padding: 0px;
+    width: 40%;
+    margin-left: 30%;
+    text-align: center;
+    color: #7c2cd3;
+}
+
+.userinfo .fieldLabel {
+    font-size: 20px;
+    color: brown;
+}
+
+.userinfo .fieldValue {
+    font-size: 20px;
+    color: #2aa53f;
+}
+
+.userinfo .changePwd {
+    border-radius: 10px;
+    color: blueviolet;
+    background-color: khaki;
+    width: 30%;
+    height: 36px;
+}
+
+.field {
+    padding: 15px;
+}
+
+#submit {
+    width: 30%;
+    text-align: center;
+    border-radius: 2px;
+    background-color: #f69995;
+}

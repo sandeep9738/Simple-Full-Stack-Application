@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Qlever Labs Standard User Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/user.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+        <div class="topbar"> <h2> Hi  <span id="name"></span></h2>
+            <button class="logoutbtn" >Log Out</button>
+        </div>
+        <div class="userinfo">
+            <h2 > User Information </h2>
+            <div  class="field"><label class="fieldLabel">Email Id : </label> <label id="email" class="fieldValue"></label></div>
+            <div  class="field"><label class="fieldLabel">Username : </label> <label id="username" class="fieldValue"></label></div>
+            <div> <button class="changePwd" data-toggle="modal" data-target="#changePassword" > Change Password </button></div>
+
+                  <!-- The Modal -->
+                <div class="modal" id="changePassword">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">Change Password</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                                <div  class="field">
+                                    <label class="fieldLabel">Old Password : </label>
+                                    <input id="oldpassword" type="password" required autocomplete="off" />
+                                </div>
+                                <div  class="field">
+                                        <label class="fieldLabel">New Password : </label>
+                                        <input id="newpassword" type="password" required autocomplete="off" />
+                                </div>
+                                <button type="button" id="submit">Submit</button>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger closeModal" data-dismiss="modal">Close</button>
+                        </div>
+
+                      </div>
+                    </div>
+                </div>
+        </div>
+        <script>
+                $('.logoutbtn').click( () => {
+                        localStorage.removeItem("user-token");
+                        localStorage.removeItem("name");
+                        window.location.href = '/signin.html';
+                })
+                $(document).ready(function(){
+
+                    if(!localStorage.getItem("user-token")) {
+                        window.location.href = '/signin.html';
+                    }
+                    $('#name').text(localStorage.getItem("name"));
+                    $('#email').text(localStorage.getItem("email"));
+                    $('#username').text(localStorage.getItem("username"));
+
+                });
+                $('#submit').click( () => {
+                    $.ajax({
+                        url: "http://localhost:8000/user/changePassword",
+                        type: 'POST',
+                        data : {
+                            email : localStorage.getItem("email"),
+                            oldPassword : $('#oldpassword').val(),
+                            newPassword : $('#newpassword').val()
+                        },
+                        beforeSend: function(xhr){xhr.setRequestHeader('authorization', localStorage.getItem("user-token"));},
+                        success: function (data) {
+
+                            alert(data.message);
+                            $('.closeModal').click();
+
+                        },
+                        error: function (error) {
+                            console.log(JSON.stringify(error));
+                            alert("Internal Server Error");
+                        }
+                    });
+                });
+
+    </script>
+</body>
+</html>
